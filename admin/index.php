@@ -202,16 +202,16 @@ $stats = $statsStmt->fetch();
             <?php endif; ?>
 
             <!-- Search Bar -->
-            <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 mb-6">
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-6">
                 <form method="GET" class="flex flex-col sm:flex-row gap-4">
                     <div class="flex-1 relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         <input 
                             type="text" 
                             name="busca" 
                             placeholder="Buscar por código, nome, CPF ou curso..."
                             value="<?php echo htmlspecialchars($busca); ?>"
-                            class="w-full pl-12 pr-4 py-3 bg-white/10 border-2 border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-primary-500 transition-all"
+                            class="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all"
                         >
                     </div>
                     <button type="submit" class="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-2">
@@ -219,7 +219,7 @@ $stats = $statsStmt->fetch();
                         Buscar
                     </button>
                     <?php if ($busca): ?>
-                    <a href="index.php" class="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-colors flex items-center justify-center gap-2">
+                    <a href="index.php" class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl transition-colors flex items-center justify-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                         Limpar
                     </a>
@@ -228,20 +228,20 @@ $stats = $statsStmt->fetch();
             </div>
 
             <!-- Certificates Table -->
-            <div class="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden">
-                <div class="p-6 border-b border-white/10">
-                    <h2 class="text-lg font-semibold text-white flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>
                         Certificados Cadastrados
                     </h2>
                 </div>
                 
                 <?php if (empty($certificados)): ?>
                 <div class="p-12 text-center">
-                    <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" /></svg>
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" /></svg>
                     </div>
-                    <p class="text-slate-400 mb-4">Nenhum certificado encontrado</p>
+                    <p class="text-gray-500 mb-4">Nenhum certificado encontrado</p>
                     <a href="cadastrar.php" class="inline-flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
                         Cadastrar Primeiro
@@ -251,58 +251,58 @@ $stats = $statsStmt->fetch();
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
-                            <tr class="border-b border-white/10">
-                                <th class="text-left py-4 px-6 text-slate-400 font-medium text-sm">Código</th>
-                                <th class="text-left py-4 px-6 text-slate-400 font-medium text-sm">Nome</th>
-                                <th class="text-left py-4 px-6 text-slate-400 font-medium text-sm hidden md:table-cell">Curso</th>
-                                <th class="text-left py-4 px-6 text-slate-400 font-medium text-sm hidden lg:table-cell">Conclusão</th>
-                                <th class="text-left py-4 px-6 text-slate-400 font-medium text-sm">Status</th>
-                                <th class="text-right py-4 px-6 text-slate-400 font-medium text-sm">Ações</th>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <th class="text-left py-4 px-6 text-gray-600 font-medium text-sm">Código</th>
+                                <th class="text-left py-4 px-6 text-gray-600 font-medium text-sm">Nome</th>
+                                <th class="text-left py-4 px-6 text-gray-600 font-medium text-sm hidden md:table-cell">Curso</th>
+                                <th class="text-left py-4 px-6 text-gray-600 font-medium text-sm hidden lg:table-cell">Conclusão</th>
+                                <th class="text-left py-4 px-6 text-gray-600 font-medium text-sm">Status</th>
+                                <th class="text-right py-4 px-6 text-gray-600 font-medium text-sm">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($certificados as $cert): ?>
-                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                                 <td class="py-4 px-6">
-                                    <span class="font-mono text-primary-400 font-medium"><?php echo htmlspecialchars($cert['codigo']); ?></span>
+                                    <span class="font-mono text-primary-600 font-medium"><?php echo htmlspecialchars($cert['codigo']); ?></span>
                                 </td>
                                 <td class="py-4 px-6">
-                                    <span class="text-white"><?php echo htmlspecialchars($cert['nome_aluno']); ?></span>
+                                    <span class="text-gray-800"><?php echo htmlspecialchars($cert['nome_aluno']); ?></span>
                                 </td>
                                 <td class="py-4 px-6 hidden md:table-cell">
-                                    <span class="text-slate-300"><?php echo htmlspecialchars($cert['curso']); ?></span>
+                                    <span class="text-gray-600"><?php echo htmlspecialchars($cert['curso']); ?></span>
                                 </td>
                                 <td class="py-4 px-6 hidden lg:table-cell">
-                                    <span class="text-slate-400"><?php echo date('d/m/Y', strtotime($cert['data_conclusao'])); ?></span>
+                                    <span class="text-gray-500"><?php echo date('d/m/Y', strtotime($cert['data_conclusao'])); ?></span>
                                 </td>
                                 <td class="py-4 px-6">
                                     <?php if ($cert['status'] === 'ativo'): ?>
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-medium">
-                                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">
+                                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
                                         Ativo
                                     </span>
                                     <?php else: ?>
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-red-500/20 text-red-400 rounded-full text-xs font-medium">
-                                        <span class="w-1.5 h-1.5 bg-red-400 rounded-full"></span>
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-red-50 text-red-600 rounded-full text-xs font-medium">
+                                        <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
                                         Revogado
                                     </span>
                                     <?php endif; ?>
                                 </td>
                                 <td class="py-4 px-6">
                                     <div class="flex items-center justify-end gap-2">
-                                        <a href="editar.php?id=<?php echo $cert['id']; ?>" class="p-2 bg-primary-500/20 text-primary-400 rounded-lg hover:bg-primary-500/30 transition-colors" title="Editar">
+                                        <a href="editar.php?id=<?php echo $cert['id']; ?>" class="p-2 bg-primary-50 text-primary-600 rounded-lg hover:bg-primary-100 transition-colors" title="Editar">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                         </a>
                                         <?php if ($cert['status'] === 'ativo'): ?>
-                                        <a href="?status=revogar&id=<?php echo $cert['id']; ?>" class="p-2 bg-amber-500/20 text-amber-400 rounded-lg hover:bg-amber-500/30 transition-colors" title="Revogar" onclick="return confirm('Revogar este certificado?')">
+                                        <a href="?status=revogar&id=<?php echo $cert['id']; ?>" class="p-2 bg-amber-50 text-amber-600 rounded-lg hover:bg-amber-100 transition-colors" title="Revogar" onclick="return confirm('Revogar este certificado?')">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
                                         </a>
                                         <?php else: ?>
-                                        <a href="?status=ativar&id=<?php echo $cert['id']; ?>" class="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg hover:bg-emerald-500/30 transition-colors" title="Ativar">
+                                        <a href="?status=ativar&id=<?php echo $cert['id']; ?>" class="p-2 bg-emerald-50 text-emerald-600 rounded-lg hover:bg-emerald-100 transition-colors" title="Ativar">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                         </a>
                                         <?php endif; ?>
-                                        <a href="?excluir=<?php echo $cert['id']; ?>" class="p-2 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 transition-colors" title="Excluir" onclick="return confirm('Excluir este certificado permanentemente?')">
+                                        <a href="?excluir=<?php echo $cert['id']; ?>" class="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors" title="Excluir" onclick="return confirm('Excluir este certificado permanentemente?')">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                         </a>
                                     </div>
