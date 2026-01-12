@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $instituicao = trim($_POST['instituicao'] ?? '');
     $observacoes = trim($_POST['observacoes'] ?? '');
     $status = $_POST['status'] ?? 'ativo';
+    $permitir_download = isset($_POST['permitir_download']) ? 1 : 0;
     
     if (empty($codigo) || empty($nome_aluno) || empty($curso) || empty($data_conclusao) || $carga_horaria <= 0) {
         $mensagem = 'Por favor, preencha todos os campos obrigatórios.';
@@ -53,13 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt = $pdo->prepare("UPDATE certificados SET 
                     codigo = ?, nome_aluno = ?, cpf = ?, curso = ?, carga_horaria = ?, 
                     data_inicio = ?, data_conclusao = ?, nota = ?, instituicao = ?, 
-                    observacoes = ?, status = ?
+                    observacoes = ?, status = ?, permitir_download = ?
                     WHERE id = ?");
                 
                 $stmt->execute([
                     $codigo, $nome_aluno, $cpf ?: null, $curso, $carga_horaria,
                     $data_inicio ?: null, $data_conclusao, $nota,
-                    $instituicao ?: 'Instituição', $observacoes ?: null, $status, $id
+                    $instituicao ?: 'Instituição', $observacoes ?: null, $status, $permitir_download, $id
                 ]);
                 
                 $mensagem = 'Certificado atualizado com sucesso!';
@@ -287,6 +288,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all resize-none"
                             ><?php echo htmlspecialchars($certificado['observacoes'] ?? ''); ?></textarea>
                         </div>
+
+                        <?php if (!empty($certificado['arquivo_pdf'])): ?>
+                        <div class="md:col-span-2">
+                            <label class="block text-gray-700 text-sm font-medium mb-2 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                                Arquivo PDF Anexado
+                            </label>
+                            <div class="flex items-center gap-3 bg-blue-50 p-4 rounded-xl border border-blue-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M7 3a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H7z"/></svg>
+                                <div class="flex-1">
+                                    <p class="text-sm text-gray-700 font-medium"><?php echo htmlspecialchars($certificado['arquivo_pdf']); ?></p>
+                                </div>
+                                <a href="../assets/pdf/<?php echo htmlspecialchars($certificado['arquivo_pdf']); ?>" target="_blank" class="text-primary-600 hover:text-primary-700 text-sm font-medium">Visualizar</a>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-gray-700 text-sm font-medium mb-3">Opções do PDF</label>
+                            <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                                <input 
+                                    type="checkbox" 
+                                    name="permitir_download"
+                                    id="permitir_download"
+                                    <?php echo $certificado['permitir_download'] ? 'checked' : ''; ?>
+                                    class="w-5 h-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                                >
+                                <label for="permitir_download" class="text-sm text-gray-700">
+                                    Permitir download do PDF no site
+                                </label>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">Quando habilitado, usuários poderão baixar o certificado em PDF ao validar.</p>
+                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 

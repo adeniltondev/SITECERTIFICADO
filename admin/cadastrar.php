@@ -10,6 +10,17 @@ $pdo = getConnection();
 $mensagem = '';
 $tipo_mensagem = '';
 
+// Diretório para armazenar PDFs
+$pdf_dir = '../assets/pdf/';
+if (!is_dir($pdf_dir)) {
+    mkdir($pdf_dir, 0755, true);
+}
+
+function sanitizeFilename($filename) {
+    $filename = preg_replace('/[^a-zA-Z0-9_-]/', '_', $filename);
+    return substr($filename, 0, 50);
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $codigo = trim($_POST['codigo'] ?? '');
     $nome_aluno = trim($_POST['nome_aluno'] ?? '');
@@ -21,11 +32,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nota = !empty($_POST['nota']) ? floatval($_POST['nota']) : null;
     $instituicao = trim($_POST['instituicao'] ?? '');
     $observacoes = trim($_POST['observacoes'] ?? '');
+    $permitir_download = isset($_POST['permitir_download']) ? 1 : 0;
+    
+    $arquivo_pdf = null;
+    
+    // Processar upload do PDF
+    if (!empty($_FILES['pdf']['name'])) {
+        $file = $_FILES['pdf'];
+        $allowed_types = ['application/pdf'];
+        $max_size = 10 * 1024 * 1024; // 10MB
+        
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            $mensagem = 'Erro ao fazer upload do arquivo.';
+            $tipo_mensagem = 'error';
+        } elseif (!in_array($file['type'], $allowed_types)) {
+            $mensagem = 'Apenas arquivos PDF são permitidos.';
+            $tipo_mensagem = 'error';
+        } elseif ($file['size'] > $max_size) {
+            $mensagem = 'O arquivo é muito grande. Máximo 10MB.';
+            $tipo_mensagem = 'error';
+        } else {
+            // Gerar nome único para o arquivo
+            $arquivo_pdf = 'cert_' . time() . '_' . sanitizeFilename($nome_aluno) . '.pdf';
+            $upload_path = $pdf_dir . $arquivo_pdf;
+            
+            if (!move_uploaded_file($file['tmp_name'], $upload_path)) {
+                $mensagem = 'Erro ao salvar o arquivo.';
+                $tipo_mensagem = 'error';
+                $arquivo_pdf = null;
+            }
+        }
+    }
     
     if (empty($codigo) || empty($nome_aluno) || empty($curso) || empty($data_conclusao) || $carga_horaria <= 0) {
         $mensagem = 'Por favor, preencha todos os campos obrigatórios.';
         $tipo_mensagem = 'error';
-    } else {
+    } elseif ($tipo_mensagem !== 'error') {
         try {
             $checkStmt = $pdo->prepare("SELECT id FROM certificados WHERE codigo = ?");
             $checkStmt->execute([$codigo]);
@@ -35,13 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $tipo_mensagem = 'error';
             } else {
                 $stmt = $pdo->prepare("INSERT INTO certificados 
-                    (codigo, nome_aluno, cpf, curso, carga_horaria, data_inicio, data_conclusao, nota, instituicao, observacoes) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    (codigo, nome_aluno, cpf, curso, carga_horaria, data_inicio, data_conclusao, nota, instituicao, observacoes, arquivo_pdf, permitir_download) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 
                 $stmt->execute([
                     $codigo, $nome_aluno, $cpf ?: null, $curso, $carga_horaria,
                     $data_inicio ?: null, $data_conclusao, $nota,
-                    $instituicao ?: 'Instituição', $observacoes ?: null
+                    $instituicao ?: 'Instituição', $observacoes ?: null, $arquivo_pdf, $permitir_download
                 ]);
                 
                 $mensagem = 'Certificado cadastrado com sucesso!';
@@ -106,7 +148,7 @@ $codigo_sugerido = sprintf("CERT-%d-%03d", $ano, $proximo);
             </div>
             <?php endif; ?>
 
-            <form method="POST" action="" class="space-y-6">
+            <form method="POST" action="" class="space-y-6" enctype="multipart/form-data">
                 <!-- Informações Básicas -->
                 <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                     <h2 class="text-lg font-semibold text-gray-800 mb-6 flex items-center gap-2">
@@ -261,6 +303,52 @@ $codigo_sugerido = sprintf("CERT-%d-%03d", $ano, $proximo);
                     </div>
                 </div>
 
+                <!-- Arquivo PDF -->
+                <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-6 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                        Arquivo PDF do Certificado
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-2">Upload do PDF</label>
+                            <div class="relative">
+                                <input 
+                                    type="file" 
+                                    name="pdf"
+                                    id="pdf"
+                                    accept=".pdf"
+                                    class="hidden"
+                                >
+                                <label for="pdf" class="block px-4 py-8 border-2 border-dashed border-gray-300 rounded-xl text-center cursor-pointer hover:border-primary-500 hover:bg-blue-50 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+                                    <p class="text-sm text-gray-700 font-medium">Clique ou arraste um arquivo PDF</p>
+                                    <p class="text-xs text-gray-500 mt-1">Máximo 10MB</p>
+                                </label>
+                            </div>
+                            <p id="fileName" class="text-sm text-gray-600 mt-2"></p>
+                        </div>
+
+                        <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                            <input 
+                                type="checkbox" 
+                                name="permitir_download"
+                                id="permitir_download"
+                                checked
+                                class="w-5 h-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                            >
+                            <label for="permitir_download" class="text-sm text-gray-700">
+                                Permitir download do PDF no site (usuários poderão baixar o certificado)
+                            </label>
+                        </div>
+
+                        <p class="text-xs text-gray-500 bg-blue-50 p-3 rounded-lg border border-blue-200">
+                            <strong>Dica:</strong> O PDF é opcional. Se não quiser enviar, deixe em branco. A opção de download só aparecerá se um PDF for enviado.
+                        </p>
+                    </div>
+                </div>
+
                 <!-- Actions -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-end">
                     <a href="index.php" class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl transition-colors text-center flex items-center justify-center gap-2">
@@ -277,5 +365,28 @@ $codigo_sugerido = sprintf("CERT-%d-%03d", $ano, $proximo);
     </div>
 
     <script src="../assets/js/main.js"></script>
+    <script>
+        // Manipular upload de arquivo
+        const pdfInput = document.getElementById('pdf');
+        const fileNameDisplay = document.getElementById('fileName');
+
+        pdfInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                fileNameDisplay.textContent = '✓ Arquivo selecionado: ' + this.files[0].name;
+                fileNameDisplay.classList.remove('text-red-600');
+                fileNameDisplay.classList.add('text-emerald-600');
+            } else {
+                fileNameDisplay.textContent = '';
+            }
+        });
+
+        // Gerar código
+        document.getElementById('gerarCodigo').addEventListener('click', function() {
+            const ano = new Date().getFullYear();
+            const random = Math.floor(Math.random() * 999) + 1;
+            const codigo = 'CERT-' + ano + '-' + String(random).padStart(3, '0');
+            document.getElementById('codigo').value = codigo;
+        });
+    </script>
 </body>
 </html>
