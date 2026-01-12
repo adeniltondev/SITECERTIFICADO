@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS `certificados` (
     `instituicao` VARCHAR(255) DEFAULT 'Nome da Instituição',
     `status` ENUM('ativo', 'revogado') DEFAULT 'ativo',
     `observacoes` TEXT DEFAULT NULL,
+    `arquivo_pdf` VARCHAR(255) DEFAULT NULL,
+    `permitir_download` TINYINT(1) DEFAULT 1,
     `criado_em` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `atualizado_em` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
