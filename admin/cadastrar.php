@@ -11,7 +11,7 @@ $mensagem = '';
 $tipo_mensagem = '';
 
 // Diretório para armazenar PDFs
-$pdf_dir = '../novosite/assets/pdf/';
+$pdf_dir = '../assets/pdf/';
 if (!is_dir($pdf_dir)) {
     mkdir($pdf_dir, 0755, true);
 }
