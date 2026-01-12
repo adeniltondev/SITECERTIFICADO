@@ -42,27 +42,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Processar upload do PDF
     if (!empty($_FILES['pdf']['name'])) {
         $file = $_FILES['pdf'];
-        $allowed_types = ['application/pdf'];
         $max_size = 10 * 1024 * 1024; // 10MB
         
         if ($file['error'] !== UPLOAD_ERR_OK) {
             $mensagem = 'Erro ao fazer upload do arquivo.';
             $tipo_mensagem = 'error';
-        } elseif (!in_array($file['type'], $allowed_types)) {
-            $mensagem = 'Apenas arquivos PDF são permitidos.';
-            $tipo_mensagem = 'error';
         } elseif ($file['size'] > $max_size) {
             $mensagem = 'O arquivo é muito grande. Máximo 10MB.';
             $tipo_mensagem = 'error';
         } else {
-            // Gerar nome único para o arquivo
-            $arquivo_pdf = 'cert_' . time() . '_' . sanitizeFilename($nome_aluno) . '.pdf';
-            $upload_path = $pdf_dir . $arquivo_pdf;
+            // Validar se é um PDF real (magic bytes)
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mime_type = finfo_file($finfo, $file['tmp_name']);
+            finfo_close($finfo);
             
-            if (!move_uploaded_file($file['tmp_name'], $upload_path)) {
-                $mensagem = 'Erro ao salvar o arquivo.';
+            // Verificar magic bytes do PDF
+            $handle = fopen($file['tmp_name'], 'r');
+            $header = fread($handle, 5);
+            fclose($handle);
+            
+            if ($mime_type !== 'application/pdf' || strpos($header, '%PDF') === false) {
+                $mensagem = 'O arquivo enviado não é um PDF válido.';
                 $tipo_mensagem = 'error';
-                $arquivo_pdf = null;
+            } else {
+                // Gerar nome único para o arquivo
+                $arquivo_pdf = 'cert_' . time() . '_' . sanitizeFilename($nome_aluno) . '.pdf';
+                $upload_path = $pdf_dir . $arquivo_pdf;
+                
+                if (!move_uploaded_file($file['tmp_name'], $upload_path)) {
+                    $mensagem = 'Erro ao salvar o arquivo.';
+                    $tipo_mensagem = 'error';
+                    $arquivo_pdf = null;
+                }
             }
         }
     }
