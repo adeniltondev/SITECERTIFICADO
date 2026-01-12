@@ -78,46 +78,46 @@ $stats = $statsStmt->fetch();
         }
     </script>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+<body class="min-h-screen bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50">
     <!-- Sidebar -->
-    <aside class="fixed top-0 left-0 h-full w-64 bg-slate-800/50 backdrop-blur-xl border-r border-white/10 hidden lg:block">
+    <aside class="fixed top-0 left-0 h-full w-64 bg-white shadow-xl border-r border-gray-200 hidden lg:block">
         <div class="p-6">
             <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center">
+                <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                     </svg>
                 </div>
-                <span class="font-bold text-white">Certificados</span>
+                <span class="font-bold text-gray-800">Certificados</span>
             </div>
 
             <nav class="space-y-2">
-                <a href="index.php" class="flex items-center gap-3 px-4 py-3 bg-primary-500/20 text-primary-400 rounded-xl">
+                <a href="index.php" class="flex items-center gap-3 px-4 py-3 bg-primary-50 text-primary-600 rounded-xl">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
                     Dashboard
                 </a>
-                <a href="cadastrar.php" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white rounded-xl transition-colors">
+                <a href="cadastrar.php" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-50 hover:text-gray-700 rounded-xl transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
                     Novo Certificado
                 </a>
-                <a href="../index.php" target="_blank" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/5 hover:text-white rounded-xl transition-colors">
+                <a href="../index.php" target="_blank" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-50 hover:text-gray-700 rounded-xl transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                     Ver Site
                 </a>
             </nav>
         </div>
 
-        <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-white/10">
+        <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200">
             <div class="flex items-center gap-3 mb-4">
-                <div class="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                <div class="w-10 h-10 bg-primary-50 rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                 </div>
                 <div>
-                    <p class="text-sm font-medium text-white"><?php echo htmlspecialchars($_SESSION['admin_nome']); ?></p>
-                    <p class="text-xs text-slate-400">Administrador</p>
+                    <p class="text-sm font-medium text-gray-800"><?php echo htmlspecialchars($_SESSION['admin_nome']); ?></p>
+                    <p class="text-xs text-gray-500">Administrador</p>
                 </div>
             </div>
-            <a href="logout.php" class="flex items-center justify-center gap-2 w-full px-4 py-2 bg-red-500/10 text-red-400 rounded-xl hover:bg-red-500/20 transition-colors">
+            <a href="logout.php" class="flex items-center justify-center gap-2 w-full px-4 py-2 bg-red-50 text-red-600 rounded-xl hover:bg-red-100 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
                 Sair
             </a>
@@ -127,21 +127,21 @@ $stats = $statsStmt->fetch();
     <!-- Main Content -->
     <div class="lg:ml-64">
         <!-- Top Bar Mobile -->
-        <header class="lg:hidden bg-slate-800/50 backdrop-blur-xl border-b border-white/10 p-4">
+        <header class="lg:hidden bg-white shadow-sm border-b border-gray-200 p-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center">
+                    <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                         </svg>
                     </div>
-                    <span class="font-bold text-white">Painel</span>
+                    <span class="font-bold text-gray-800">Painel</span>
                 </div>
                 <div class="flex items-center gap-2">
                     <a href="cadastrar.php" class="p-2 bg-primary-500 text-white rounded-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
                     </a>
-                    <a href="logout.php" class="p-2 bg-red-500/20 text-red-400 rounded-lg">
+                    <a href="logout.php" class="p-2 bg-red-50 text-red-600 rounded-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
                     </a>
                 </div>
@@ -151,52 +151,52 @@ $stats = $statsStmt->fetch();
         <main class="p-6 lg:p-8">
             <!-- Page Header -->
             <div class="mb-8">
-                <h1 class="text-2xl lg:text-3xl font-bold text-white mb-2">Dashboard</h1>
-                <p class="text-slate-400">Gerencie seus certificados</p>
+                <h1 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-2">Dashboard</h1>
+                <p class="text-gray-500">Gerencie seus certificados</p>
             </div>
 
             <!-- Stats Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
+                <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-primary-500/20 rounded-xl flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        <div class="w-12 h-12 bg-primary-50 rounded-xl flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                         </div>
                     </div>
-                    <p class="text-3xl font-bold text-white mb-1"><?php echo $stats['total'] ?? 0; ?></p>
-                    <p class="text-slate-400 text-sm">Total de Certificados</p>
+                    <p class="text-3xl font-bold text-gray-800 mb-1"><?php echo $stats['total'] ?? 0; ?></p>
+                    <p class="text-gray-500 text-sm">Total de Certificados</p>
                 </div>
 
-                <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
+                <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         </div>
                     </div>
-                    <p class="text-3xl font-bold text-white mb-1"><?php echo $stats['ativos'] ?? 0; ?></p>
-                    <p class="text-slate-400 text-sm">Certificados Ativos</p>
+                    <p class="text-3xl font-bold text-gray-800 mb-1"><?php echo $stats['ativos'] ?? 0; ?></p>
+                    <p class="text-gray-500 text-sm">Certificados Ativos</p>
                 </div>
 
-                <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
+                <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+                        <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
                         </div>
                     </div>
-                    <p class="text-3xl font-bold text-white mb-1"><?php echo $stats['revogados'] ?? 0; ?></p>
-                    <p class="text-slate-400 text-sm">Certificados Revogados</p>
+                    <p class="text-3xl font-bold text-gray-800 mb-1"><?php echo $stats['revogados'] ?? 0; ?></p>
+                    <p class="text-gray-500 text-sm">Certificados Revogados</p>
                 </div>
             </div>
 
             <!-- Alert Messages -->
             <?php if ($mensagem): ?>
-            <div class="mb-6 flex items-center gap-3 p-4 <?php echo $tipo_mensagem === 'success' ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30'; ?> border rounded-xl">
+            <div class="mb-6 flex items-center gap-3 p-4 <?php echo $tipo_mensagem === 'success' ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200'; ?> border rounded-xl">
                 <?php if ($tipo_mensagem === 'success'): ?>
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-emerald-300"><?php echo htmlspecialchars($mensagem); ?></span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span class="text-emerald-700"><?php echo htmlspecialchars($mensagem); ?></span>
                 <?php else: ?>
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-red-300"><?php echo htmlspecialchars($mensagem); ?></span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span class="text-red-700"><?php echo htmlspecialchars($mensagem); ?></span>
                 <?php endif; ?>
             </div>
             <?php endif; ?>
