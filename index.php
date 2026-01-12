@@ -226,6 +226,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['codigo'])) {
                         </div>
                     </div>
 
+                    <!-- PDF Download Button -->
+                    <?php if (!empty($resultado['arquivo_pdf']) && $resultado['permitir_download'] == 1): ?>
+                    <div class="mt-6 flex justify-center">
+                        <a href="../assets/pdf/<?php echo htmlspecialchars($resultado['arquivo_pdf']); ?>" download class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" /></svg>
+                            Baixar Certificado (PDF)
+                        </a>
+                    </div>
+                    <?php endif; ?>
+
                     <!-- Validation Stamp -->
                     <div class="mt-6 flex justify-center">
                         <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-100 rounded-full border border-emerald-200">
