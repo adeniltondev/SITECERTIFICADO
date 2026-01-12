@@ -17,6 +17,9 @@ if (!is_dir($pdf_dir)) {
 }
 
 function sanitizeFilename($filename) {
+    // Remove extensão original
+    $filename = pathinfo($filename, PATHINFO_FILENAME);
+    // Remove caracteres especiais
     $filename = preg_replace('/[^a-zA-Z0-9_-]/', '_', $filename);
     return substr($filename, 0, 50);
 }
